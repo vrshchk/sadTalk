@@ -7,7 +7,19 @@ import pymongo
 myclient = pymongo.MongoClient("mongodb+srv://user:userpass@sadtalk.0ycvj.mongodb.net/patternsDB?retryWrites=true&w=majority")
 mydb = myclient["patternsDB"]
 
-print(myclient.list_database_names())
+
+collist = mydb.list_collection_names()
+collection = mydb.intents
+
+
+for post in collection.find():
+	print(post)
+
+
+
+
+if "intents" in collist:
+  print("The collection exists.")
 
 
 bot = telebot.TeleBot(config.TOKEN)
