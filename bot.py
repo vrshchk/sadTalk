@@ -10,22 +10,7 @@ mydb = myclient["patternsDB"]
 
 collist = mydb.list_collection_names()
 collection = mydb.intents
-index_cursor = collection.list_indexes()
-print(index_cursor)
 
-
-for index in index_cursor:
-	print(index.keys())
-
-for post in collection.find():
-	arr = (post['patterns'])
-	print(arr)
-
-
-
-
-if "intents" in collist:
-  print("The collection exists.")
 
 
 bot = telebot.TeleBot(config.TOKEN)
@@ -33,23 +18,42 @@ bot = telebot.TeleBot(config.TOKEN)
 @bot.message_handler(content_types=['text'])
 def lalala(message):
 	bot.send_chat_action(chat_id=message.chat.id, action = 'typing')
-	time.sleep(1)
-	s = message.text
+	time.sleep(0.5)
+	s = message.text.lower()
 	ans = ':)' 
 	answerFound = 0
- 
-	foundExactly = (collection.find({"patterns":s}).count())
 
-	if (foundExactly != 0 ):
-		ans = collection.find_one({"patterns":s})["answers"]
-		answerFound = 1
+
+	if ("?" in s ):
+		if ('do you' in s):
+			questions = collection.find_one({"tag":"questions"})["patterns"]
+			verbs = collection.find_one({"tag":"verbs"})["patterns"]
+			for verb in verbs:
+				for quest in questions:
+					if ((verb in s) and (quest in s)):
+						ans = "I don't think you will understand " + quest + " i " + verb + " that."
+						answerFound = 1
+						break
+		
+			if (answerFound==0):
+				verbs = collection.find_one({"tag":"verbs"})["patterns"]
+				for word in verbs:
+					if (word in s):
+						ans = "Now, i don't " + word + " it"
+						answerFound = 1
+						break
+			
+
+
 
 	if (answerFound==0):
 		for obj in collection.find():
 			arr = obj["patterns"]
+			print(arr)
 			for answ in arr:
+				print(answ)
 				if (answ in s):
-					temp = obj['answers']
+					temp = obj["answers"]
 					ans = temp[0]
 					ans = ans.replace("*",answ)
 
@@ -57,6 +61,10 @@ def lalala(message):
 		
 	
 	bot.send_message(message.from_user.id,ans)
+
+
+
+
 
 
 
