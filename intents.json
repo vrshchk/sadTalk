@@ -1,0 +1,47 @@
+{"intents": [
+        {"tag": "swearing",
+            "patterns": ["shit", "blia", "blya", "sosatb", "sosat", "ebat", "bitch", "asshole", "whore", "hoe"] ,
+            "answers": ["omg", "that was rude..", "oh so you`re savage??", "don`t say '*'", "I don`t like when you talk like that"],
+            "context_set": "",
+            "anti_context_set": "-"
+        },
+        {"tag": "greeting",
+         "patterns": ["hi", "hello", "hey", "ahoy", "nice to meet you"],
+         "answers": ["hello", "hi", "hey", "zdarova", "hey there", "nice to meet you"],
+         "context_set": "",
+         "anti_context_set": "-"
+        },
+
+        {"tag": "good greetings",
+            "patterns": ["good morning", "good afternoon", "good evening"],
+            "answers": ["I would say good, but the truth is that it is not..", "at least for someone it is good.."],
+            "context_set": "",
+            "anti_context_set": "-"
+        },
+        {"tag": "goodbye",
+         "patterns": ["bye", "see you later", "goodbye", "see you", "goodnight"],
+         "answers": ["see you", "have a nice day", "bye"],
+         "context_set": "",
+         "anti_context_set": "-"
+        },
+        {"tag": "whats up",
+            "patterns": ["how are you", "how is it going", "how do you feel", "what`s up", "whats up", "wassup", "how are you doing", "what is new" , "what`s new"],
+            "answers": ["I feel depressed, and what about you?" ,"sad..:( and you?"],
+            "context_set": "",
+            "anti_context_set": "-"
+        },
+        {"tag": "thanks",
+         "patterns": ["thanks", "thank you", "that's helpful"],
+         "answers": ["happy to help", "any time", "my pleasure"],
+         "context_set": "",
+         "anti_context_set": "-"
+        },
+        {"tag": "question words + you",
+         "patterns": ["why", "when", "where", "what", "which", "how", "who"],
+         "answers": ["is it okey for you to ask this?", "one day you will understand *..", "I don`t wanna tell you.", "ask me something easier:(", "this question makes me feel uncomfortable", "this question makes me cry", "such a question makes me feel depressed"],
+         "context_set":"you",
+         "anti_context_set": "-"
+        }
+
+   ]
+}

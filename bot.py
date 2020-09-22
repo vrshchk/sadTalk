@@ -1,72 +1,60 @@
 import telebot
 import config
 import time
-import pymongo
+import json
+import numpy
+import re
 
-
-myclient = pymongo.MongoClient("mongodb+srv://user:userpass@sadtalk.0ycvj.mongodb.net/patternsDB?retryWrites=true&w=majority")
-mydb = myclient["patternsDB"]
-
-
-collist = mydb.list_collection_names()
-collection = mydb.intents
-
-
+with open('intents.json') as file:
+    data = json.load(file)
 
 bot = telebot.TeleBot(config.TOKEN)
 
+
+
+
+
+
+
+def randChoice(arr):
+    rand = numpy.random.randint(0, len(arr))
+    return arr[rand]
+
+
+def findAnswer(s):
+
+    for intent in data['intents']:
+        doc = intent
+        patterns = doc["patterns"]
+        for pattern in patterns:
+            if (pattern in s):
+                if ( doc["context_set"] in s):
+                    if ( doc["anti_context_set"] != "-"):
+                        if (not doc["anti_context_set"] in s):
+                            answers = doc["answers"]
+                            result = randChoice(answers)
+                            result = result.replace("*", pattern)
+                            return result
+                           
+        
+
+
+
+
+
+
+
+        
+
+
+
+
 @bot.message_handler(content_types=['text'])
 def lalala(message):
-	bot.send_chat_action(chat_id=message.chat.id, action = 'typing')
-	time.sleep(0.5)
-	s = message.text.lower()
-	ans = ':)' 
-	answerFound = 0
-
-
-	if ("?" in s ):
-		if ('do you' in s):
-			questions = collection.find_one({"tag":"questions"})["patterns"]
-			verbs = collection.find_one({"tag":"verbs"})["patterns"]
-			for verb in verbs:
-				for quest in questions:
-					if ((verb in s) and (quest in s)):
-						ans = "I don't think you will understand " + quest + " i " + verb + " that."
-						answerFound = 1
-						break
-		
-			if (answerFound==0):
-				verbs = collection.find_one({"tag":"verbs"})["patterns"]
-				for word in verbs:
-					if (word in s):
-						ans = "Now, i don't " + word + " it"
-						answerFound = 1
-						break
-			
-
-
-
-	if (answerFound==0):
-		for obj in collection.find():
-			arr = obj["patterns"]
-			print(arr)
-			for answ in arr:
-				print(answ)
-				if (answ in s):
-					temp = obj["answers"]
-					ans = temp[0]
-					ans = ans.replace("*",answ)
-
-
-		
-	
-	bot.send_message(message.from_user.id,ans)
-
-
-
-
-
-
+  bot.send_chat_action(chat_id=message.chat.id, action = 'typing')
+  time.sleep(0.5)
+  s = message.text.lower()
+  answer = findAnswer(s)
+  bot.send_message(message.from_user.id,answer)
 
 bot.polling(none_stop=True, interval=0, timeout=20)
-
