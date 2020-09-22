@@ -41,7 +41,102 @@
          "answers": ["is it okey for you to ask this?", "one day you will understand *..", "I don`t wanna tell you.", "ask me something easier:(", "this question makes me feel uncomfortable", "this question makes me cry", "such a question makes me feel depressed"],
          "context_set":"you",
          "anti_context_set": "-"
-        }
+        },
+        {"tag": "questions",
+         "patterns": ["why", "when", "where", "what", "which", "how", "who"],
+         "answers": ["why is it interesting for you?", "You should ask someone else", "i don't know *....", "ask me something easier:(", "this question makes me feel uncomfortable", "this question makes me cry", "such a question makes me feel depressed"],
+         "context_set":"?",
+         "anti_context_set": "-"
+        },
 
+
+        {"tag": "do u",
+            "patterns": ["do you", "do u", "don`t you", "dont you", "don`t u", "dont u", "did you", "didn`t you", "did u", "didn`t u", "didnt you", "didnt u", "will you", "will u", "won`t you", "won`t u", "can you", "can u", "can`t you", "can`t u", "could you", "could u", "couldn`t you", "couldn`t u", "have you ever", "haven't you ever"],
+            "answers": ["yes", "yep", "no", "nope", "da", "definetely!", "sure", "i think yes...", "may be..."],
+            "context_set": "",
+            "anti_context_set": "-"
+        },
+        {"tag": "does it",
+         "patterns": ["does", "doesn't", "did", "didn't", "will", "won't", "can", "can't", "has", "had", "is", "isn't"],
+         "answers": ["yes", "yep", "no", "nope", "da", "obviously", "of course", "not really", "no way", "nooo are you serios???"],
+         "context_set":"?",
+         "anti_context_set": "-"
+        },
+
+
+        {"tag": "negative modal",
+         "patterns": ["abhor", "hate", "dislike", "detest", "loathe", "don`t like", "do not like", "dont like", "don`t love", "do not love", "dont love" ],
+         "answers": ["I feel it! I also * so many things..", "What makes you feel that way about it?", "Is there anything you like in this world?!"],
+         "context_set": "",
+         "anti_context_set": "-"
+        },
+        {"tag": "positive modals",
+         "patterns": ["like", "love", "enjoy", "adore", "want" ],
+         "answers": ["how can you * it??", "can`t relate.", "is there sth else you * ?", "tell me why you * it", "I don`t understand how you can * it.."],
+         "context_set":"i ",
+         "anti_context_set": "-"
+        },
+        {"tag": "family",
+            "patterns": ["mom", "mum", "mother", "dad", "daddy", "father", "sis", "sister" ,"bro", "brother", "grandma", "grandpa", "aunt", "auntie", "uncle", "son", "daughter", "cousin"] ,
+            "answers": ["oh tell me more about your family", "could tell me about your *?", "*? tell me more", "interesting, but I don`t want to speak about family, let`s change the topic."],
+            "context_set": "",
+            "anti_context_set": "-"
+        },
+         
+        {"tag": "good words",
+            "patterns": ["good" , "fine", "perfect", "super", "superb", "nice", "lucky", "pleasing", "fancy", "amazing", "beautiful", "charming", "wonderful", "great"] ,
+            "answers": ["really so *?", "so * ?", "happy to hear that..", "could you tell more about it then?", "oh, I see", "that`s nice", "it`s good", "happy you shared with me", "thanks for sharing" , "why is it like that? ", "are you sure? "],
+            "context_set": "",
+            "anti_context_set": "not"
+        },
+        {"tag": "bad words",
+            "patterns": ["bad", "awful", "exhausting", "unpleasant", "unacceptable", "horrible", "offensive"],
+            "answers": ["I feel you.. everything in this life is so *", "oh there`s so many * things lately", "my life is also not a fairy tail..", "oh that`s awful", "oh.. and what do you think to do with it?", "sorry to hear that:(", "sounds really bad, maybe one day it will get better"],
+            "context_set": "-",
+            "anti_context_set": "-"
+
+        },
+        
+        {"tag": "memes1",
+            "patterns": ["fuck you", "fuck u", "fuck", "i hate you", "i hate u"] ,
+            "answers": ["kavo?? are you serious blin?" ,"that was rude.."],
+            "context_set": "",
+            "anti_context_set": "-"
+
+        },
+        {"tag": "memes2",
+            "patterns": ["slava ukraini"] ,
+            "answers": ["heroiam slava"],
+            "context_set": "",
+            "anti_context_set": "-"
+        },
+        {"tag": "memes3",
+            "patterns": ["constitution"] ,
+            "answers": ["I will not be caught with it"],
+            "context_set": "",
+            "anti_context_set": "-"
+
+        }, 
+        
+         {"tag": "yn",
+            "patterns": ["yes", "yep", "no", "nope", "ta", "tak", "da", "net", "nit","ok"] ,
+            "answers": ["why *?", "tell me more","ok then"],
+            "context_set": "",
+            "anti_context_set": "-"
+
+        },
+        {"tag": "default",
+            "patterns": [""] ,
+            "answers": ["ok" ,"ponyal", "all right", "don`t even know what to say", "let`s change the topic", "I don`t really understand you", "I have to think about it", "it`s hard to respond to that", "idc", "i don`t care", ":)", ":(", "...", ":/", ")", "))", ")))0", "(((9", "(", "?!"],
+            "context_set": " ",
+            "anti_context_set": "-"
+        },
+        {"tag": "short answers",
+            "patterns": [""] ,
+            "answers": ["don`t be so shy, tell me more", "I feel like our conversation is coming to a standstill, and that is sad:(", "you`re not very talkative, I see.."],
+            "context_set": "",
+            "anti_context_set": "-"
+
+        }
    ]
 }
